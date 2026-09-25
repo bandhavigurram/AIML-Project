@@ -29,8 +29,8 @@ x_train, x_test, y_train, y_test = train_test_split(
 print(f"Shape of train and test data:{x_train.shape},{x_test.shape}")
 
 #preprocessing on training data only
-categorical_columns = ['sex','embarked']
-numerical_columns = ['pclass','age','sibsp','parch','fare']
+categorical_columns = x.select_dtypes(include=['object', 'category']).columns.tolist()
+numerical_columns = x.select_dtypes(include=['int64', 'float64']).columns.tolist()
 
 '''Encode categorical columns using One-Hot Encoding'''
 x_train = pd.get_dummies(
